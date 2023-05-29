@@ -5,3 +5,5 @@
   go.mod が自動生成される。
 - main.go を編集する。
 - コンテナに Attach Shell を実行し、/home/appuser/bin に移動して./myapp を実行。
+
+mysql フォルダ、mysql/data/db フォルダを root 権限ではなく、ユーザー権限で新設。

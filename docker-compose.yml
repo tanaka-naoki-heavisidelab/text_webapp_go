@@ -11,7 +11,29 @@ services:
     tty: true
     env_file:
       - .env
+    depends_on:
+      - db
     ports:
-        - 8080:8080
+      - 8080:8080
     volumes:
-        - .:/home/appuser/app
+      - .:/home/appuser/app
+  
+  db:
+    image: mysql:8.0
+    env_file:
+        - .env
+    volumes:
+      - ./mysql/data/db:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    user: "${MY_UID}:${MY_GID}"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - .env
+    links:
+      - db
+    ports:
+      - 4000:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
