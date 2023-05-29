@@ -7,3 +7,6 @@
 - コンテナに Attach Shell を実行し、/home/appuser/bin に移動して./myapp を実行。
 
 mysql フォルダ、mysql/data/db フォルダを root 権限ではなく、ユーザー権限で新設。
+app コンテナに入って yourapp フォルダに移動し
+go mod init yourapp
+CGO_ENABLED=0 GOOS=linux go build -v -o bin/myapp

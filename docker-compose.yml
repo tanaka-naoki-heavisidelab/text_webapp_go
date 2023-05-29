@@ -16,8 +16,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/home/appuser/app
-  
+      - ./cmd:/home/appuser/app  
   db:
     image: mysql:8.0
     env_file:
