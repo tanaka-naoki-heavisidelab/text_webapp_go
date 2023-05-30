@@ -1,12 +1,11 @@
 - ubuntu で $ which go でパスが見つかる前提。
-- プロジェクトのルートで
-  $ go mod int <module-name>
-  ここで <module-name> はあなたが選んだモジュール名で、通常は GitHub などのリポジトリの URL になります。例えば、github.com/yourusername/yourproject などです。
-  go.mod が自動生成される。
 - main.go を編集する。
-- コンテナに Attach Shell を実行し、/home/appuser/bin に移動して./myapp を実行。
-
-mysql フォルダ、mysql/data/db フォルダを root 権限ではなく、ユーザー権限で新設。
-app コンテナに入って yourapp フォルダに移動し
-go mod init yourapp
-CGO_ENABLED=0 GOOS=linux go build -v -o bin/myapp
+- main.go に必要なライブラリ等を build.sh に記入。
+  MODULE_NAME=$(basename $(pwd)) #アプリフォルダ名
+  go mod init $MODULE_NAME #go.mod 生成
+  go get github.com/joho/godotenv #必要なライブラリ 　
+  mkdir -p bin/
+  CGO_ENABLED=0 GOOS=linux go build -v -o bin/myapp
+- app コンテナを起動し、右クリック →Attach Shell でコンテナ内に入る。
+- /home/appuser/app/MODULE_NAME に移動。
+- ./build.sh を実行すると bin フォルダに myapp が生成され、localhost に取り出される。
