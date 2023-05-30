@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS books(
-	id INT PRIMARY KEY,
-	name VARCHAR(255),
-	isbn VARCHAR(255),
-	price INT
-)

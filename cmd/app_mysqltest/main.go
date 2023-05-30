@@ -24,7 +24,7 @@ func main() {
 	}
 	defer db.Close()
 
-	query, err := ioutil.ReadFile("../setup.sql")
+	query, err := ioutil.ReadFile(os.Args[1])
 	if err != nil {
 		log.Fatal(err)
 	}
