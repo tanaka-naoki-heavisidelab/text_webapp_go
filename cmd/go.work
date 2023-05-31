@@ -1,0 +1,7 @@
+go 1.20
+
+use (
+	./app_cmdswitch
+	./app_hello
+	./app_mysqltest
+)
