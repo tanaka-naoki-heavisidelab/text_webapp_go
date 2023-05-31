@@ -1,6 +1,6 @@
 # Use the official Golang image.
 # https://hub.docker.com/_/golang
-FROM golang:1.17
+FROM golang:1.20
 
 # make user in container same as localhost user
 ARG MY_UID
@@ -14,6 +14,9 @@ USER appuser
 
 # Set the work directory
 WORKDIR /home/appuser/app
+
+# Instal gopls
+RUN GO111MODULE=on go install golang.org/x/tools/gopls@latest
 
 # Keep app container running.
 CMD ["/bin/bash", "-c", "tail -f /dev/null"]
